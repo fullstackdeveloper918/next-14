@@ -42,11 +42,10 @@ const RecipeCard = (recipe: any) => {
     return (
         <>
             <div className="card p-2 rounded-4 h-100 shadow-sm">
-                <div className="card-image">
-                    <img src={recipe?.recipe?.recipe?.image || recipe?.recipe?.recipe?.recipe?.image || recipe?.image||recipe?.recipe?.image} className=" rounded-3" />
+                <div className="card-image " >
+                    <img src={recipe?.recipe?.recipe?.image || recipe?.recipe?.recipe?.recipe?.image || recipe?.image||recipe?.recipe?.image} className="w-100 h-80 rounded-3" />
                     {/* <Image
                         src={recipe?.recipe?.recipe?.image || recipe?.recipe?.recipe?.recipe?.image || recipe?.image || recipe?.recipe?.image}
-                        alt="Picture of the author"
                         className='img-fluid rounded-3'
                         width={20}
                         height={20}
