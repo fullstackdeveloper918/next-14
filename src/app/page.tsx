@@ -8,10 +8,10 @@ export default function Home() {
     
     <>
       {/* <Header /> */}
-     <div className="container" style={{padding:200}}>
-      <Signup/>
-      {/* <MainPage /> */}
-    </div>
+     {/* <div className="container" style={{padding:200}}> */}
+      {/* <Signup/> */}
+      <MainPage />
+    {/* </div> */}
     </>
   );
 }

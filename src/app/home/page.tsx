@@ -8,12 +8,27 @@ import Image from 'next/image'
 import Logout from "../../../public/img/icons8-logout-50.png"
 import { Header } from '../components/header/header';
 import Spinner from '@/common/spinner';
+import axios from 'axios';
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next';
 interface FoodData {
 
   label: string;
   calories: number;
   dietLabels: string[];
 }
+// export async function getServerSideProps() {
+//   const APP_ID = '2e28311c';
+// const APP_KEY = 'f0d2f537dd9650b98529fbf27e8156a8';
+// const baseUrl='https://api.edamam.com/api/recipes/v2'
+//   const response = await axios.get(`${baseUrl}?type=public&app_id=${APP_ID}&app_key=${APP_KEY}&health=dairy-free&cuisineType=Asian`);
+//   const posts = response.data;
+  
+//   return {
+//     props: {
+//       posts,
+//     },
+//   };
+// }
 const page: React.FC = () => {
   const router = useRouter()
   const [recipes, setRecipes] = useState<any>([]);

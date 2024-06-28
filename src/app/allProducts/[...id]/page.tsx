@@ -46,22 +46,31 @@ function page() {
       };
       const encodedText = id as any
 const decodedText = decodeURIComponent(encodedText);
+const handleBack = () => {
+  router.back()
+}
   return (
     <div >
       <div className="text-center mt-5">
 
     <h1>Product's</h1>
       </div>
+      {/* <div className="px-5">
+
+        <button className="mb-3" onClick={handleBack}><i className="fa-solid fa-backward"></i> Back</button>
+      </div> */}
    
     {loading && <p>Loading...</p>}
     {error && <p>{error}</p>}
     {/* {data.hits > 0 && ( */}
       <div className=''>
+        
       <div className="row  my-5">
               {/* <RecipeCard/> */}
               <div className="col-12">
-                <div className="d-flex align-items-center justify-content-between">
-                  <h3 className="">{decodedText} listing</h3>
+                <div className="d-flex  justify-content-between">
+
+                  <h3 className="px-5">{decodedText} listing</h3>
                   <button className='btn btn-success' onClick={handleAddToCart}>
                     <i className="fa-solid fa-cart-shopping me-1"></i>  Cart
                   </button>
