@@ -1,6 +1,5 @@
-'use client';
+
 import RecipeCard from '@/common/RecipeCard';
-import { getRecipes, getRecipes1 } from '@/common/recipeService';
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import { CartIcon } from '../components/header/cart-icon/cart-icon';
@@ -10,53 +9,19 @@ import { Header } from '../components/header/header';
 import Spinner from '@/common/spinner';
 import axios from 'axios';
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next';
+import { getRecipes } from '../action';
+import SecondaryHeader from '@/common/SecondaryHeader';
 interface FoodData {
 
   label: string;
   calories: number;
   dietLabels: string[];
 }
-// export async function getServerSideProps() {
-//   const APP_ID = '2e28311c';
-// const APP_KEY = 'f0d2f537dd9650b98529fbf27e8156a8';
-// const baseUrl='https://api.edamam.com/api/recipes/v2'
-//   const response = await axios.get(`${baseUrl}?type=public&app_id=${APP_ID}&app_key=${APP_KEY}&health=dairy-free&cuisineType=Asian`);
-//   const posts = response.data;
-  
-//   return {
-//     props: {
-//       posts,
-//     },
-//   };
-// }
-const page: React.FC = () => {
-  const router = useRouter()
-  const [recipes, setRecipes] = useState<any>([]);
-  const [data, setData] = useState<FoodData[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const storedUser = localStorage.getItem('user');
-  console.log(storedUser, "storedUser")
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        setLoading(true)
-        const data = await getRecipes();
-        setRecipes(data);
-        
-      } catch (error) {
-        console.log(error)
-      }finally {
-        setLoading(false);
-      }
-    };
-    fetchRecipes();
-  }, []);
 
-  const handleAddToCart = () => {
-    router.push('/cart');
-  };
-  console.log(data, 'sagdh')
+const page: React.FC = async () => {
+  const getData = await getRecipes()
+  console.log(getData, "hhhhh")
+
   return (
     <>
       <div className='py-5 text-center'>
@@ -64,27 +29,14 @@ const page: React.FC = () => {
         <Header />
         <div>
           <div className="container">
-            <div className="row  my-5">
-              {/* <RecipeCard/> */}
-              <div className="col-12">
-                <div className="d-flex align-items-center justify-content-between">
-                  <h3 className="">Product's Listing</h3>
-                  <button className='btn btn-success' onClick={handleAddToCart}>
-                    <i className="fa-solid fa-cart-shopping me-1"></i>  Cart
-                  </button>
-                </div>
-                <hr className='mb-0' />
-              </div>
-            </div>
-            {loading?
-            <Spinner/>:
+            <SecondaryHeader />
             <div className="row g-3 ">
-              {recipes?.hits?.map((recipe: any) => (
+              {getData.hits.map((res: any) =>
                 <div className="col-12 col-sm-6 col-md-8 col-lg-4 col-xl-3">
-                  <RecipeCard key={recipe.id} recipe={recipe} />
+                  <RecipeCard key={res.id} recipe={res} />
                 </div>
-              ))}
-            </div>}
+              )}
+            </div>
           </div>
         </div>
       </div>

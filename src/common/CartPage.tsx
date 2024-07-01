@@ -4,11 +4,9 @@ import RecipeCard from './RecipeCard';
 import { useRouter } from 'next/navigation';
 const CartPage = () => {
     const router = useRouter()
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [cartRecipes, setCartRecipes] = useState<any[]>([]);
     console.log(cartRecipes, "asaq")
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
         const existingRecipes = localStorage.getItem('cartRecipes');
         if (existingRecipes) {

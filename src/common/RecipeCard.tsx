@@ -1,8 +1,6 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
-// import { Link } from 'react-router-dom';
-import Image from 'next/image'
 
 const RecipeCard = (recipe: any) => {
     const url = recipe?.recipe?.recipe?.uri || recipe?.recipe?.recipe?.recipe?.uri || recipe;
@@ -29,10 +27,10 @@ const RecipeCard = (recipe: any) => {
         if (existingRecipes) {
             updatedRecipes = JSON.parse(existingRecipes);
             if (updatedRecipes.length > 0) {
-                updatedRecipes.pop(); // Remove the last item from the array
-                setState((prevCount) => Math.max(0, prevCount - 1)); // Ensure count doesn't go below zero
+                updatedRecipes.pop(); 
+                setState((prevCount) => Math.max(0, prevCount - 1));
                 localStorage.setItem('cartRecipes', JSON.stringify(updatedRecipes));
-                setCartRecipes(updatedRecipes); // Update state for displaying in console or elsewhere
+                setCartRecipes(updatedRecipes);
                 console.log(updatedRecipes, "checkCart");
             }
         }
@@ -43,13 +41,9 @@ const RecipeCard = (recipe: any) => {
         <>
             <div className="card p-2 rounded-4 h-100 shadow-sm">
                 <div className="card-image " >
-                    <img src={recipe?.recipe?.recipe?.image || recipe?.recipe?.recipe?.recipe?.image || recipe?.image||recipe?.recipe?.image} className="w-100 h-80 rounded-3" />
-                    {/* <Image
-                        src={recipe?.recipe?.recipe?.image || recipe?.recipe?.recipe?.recipe?.image || recipe?.image || recipe?.recipe?.image}
-                        className='img-fluid rounded-3'
-                        width={20}
-                        height={20}
-                    /> */}
+                    <img 
+                    src={recipe?.recipe?.recipe?.image || recipe?.recipe?.recipe?.recipe?.image || recipe?.image||recipe?.recipe?.image}
+                     className="w-100 h-80 rounded-3" />
                 </div>
                 <div className="card-body pb-2 d-flex flex-column">
                     <h5 className="card-title fs-6 text-start mb-4">{recipe?.recipe?.recipe?.label || recipe?.recipe?.recipe?.recipe?.label || recipe?.recipe?.lable}</h5>
