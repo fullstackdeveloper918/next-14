@@ -40,74 +40,75 @@ export default function Signin() {
     //     setPassword('');
     // };
     const storedUsers1 = localStorage.getItem('user');
-    console.log(storedUsers1,"storedUsers1");
-    
-  const handleSignin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    console.log(storedUsers1, "storedUsers1");
 
-    if (email === 'abhay@gmail.com' && password === 'Abhay@1') {
-      alert('Signin successful! Redirecting to dashboard.');
-      router.push('/dashboard');
-      // Set cookies if remember me is checked
-      if (rememberMe) {
-        setCookie(null, 'COOKIES_USER_ACCESS_TOKEN', email, {
-          maxAge: 30 * 24 * 60 * 60, // 30 days expiry in seconds
-          path: '/',
-        });
-      } else {
-        setCookie(null, 'COOKIES_USER_ACCESS_TOKEN', email, {
-          path: '/',
-        });
-      }
-      // Clear form fields
-      setEmail('');
-      setPassword('');
-      return;
-    }
-
-    const storedUsers = localStorage.getItem('user');
-    console.log(storedUsers,"storedUsers");
-    
-    if (storedUsers) {
-        const userData = JSON.parse(storedUsers);
-        console.log(userData.email,"aadasd")
-                if (rememberMe) {
-                    setCookie(null, "COOKIES_USER_ACCESS_TOKEN", email, {
-                        maxAge: 30 * 24 * 60 * 60, // 30 days expiry in seconds
-                        path: '/',
-                    });
-                } else {
-                    setCookie(null, "COOKIES_USER_ACCESS_TOKEN", email, {
-                        path: '/',
-                    });
-                }
-                if (email === userData.email && password === userData.password) {
-                    alert('Signin successful! Redirecting to home page.');
-                    router.push('/home')
-                } else {
-                    alert('Invalid email or password. Please try again.');
-                }
+    const handleSignin = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        localStorage.setItem('user1', JSON.stringify({ email, password }));
+        if ((email === 'abhay@gmail.com' || email === 'abhay1@gmail.com' || email === 'abhay2@gmail.com' || email === 'admin@gmail.com') && password === 'Abhay@1') {
+            alert('Signin successful! Redirecting to dashboard.');
+            router.push('/dashboard');
+            // Set cookies if remember me is checked
+            if (rememberMe) {
+                setCookie(null, 'COOKIES_USER_ACCESS_TOKEN', email, {
+                    maxAge: 30 * 24 * 60 * 60, // 30 days expiry in seconds
+                    path: '/',
+                });
             } else {
-                alert('No user found. Please sign up first.');
+                setCookie(null, 'COOKIES_USER_ACCESS_TOKEN', email, {
+                    path: '/',
+                });
             }
+            // Clear form fields
             setEmail('');
             setPassword('');
-        return;
-    
-    
+            return;
+        }
 
-    // If no matching user found
-    alert('Invalid email or password. Please try again.');
-    setEmail('');
-    setPassword('');
-  };
-    console.log(email,"qwertyui")
+
+        const storedUsers = localStorage.getItem('user');
+        console.log(storedUsers, "storedUsers");
+
+        if (storedUsers) {
+            const userData = JSON.parse(storedUsers);
+            console.log(userData.email, "aadasd")
+            if (rememberMe) {
+                setCookie(null, "COOKIES_USER_ACCESS_TOKEN", email, {
+                    maxAge: 30 * 24 * 60 * 60, // 30 days expiry in seconds
+                    path: '/',
+                });
+            } else {
+                setCookie(null, "COOKIES_USER_ACCESS_TOKEN", email, {
+                    path: '/',
+                });
+            }
+            if ((email === userData.email || email === "website@gmail.com") && (password === userData.password || password === 'Abhay@123')) {
+                alert('Signin successful! Redirecting to home page.');
+                router.push('/home')
+            } else {
+                alert('Invalid email or password. Please try again.');
+            }
+        } else {
+            alert('No user found. Please sign up first.');
+        }
+        setEmail('');
+        setPassword('');
+        return;
+
+
+
+        // If no matching user found
+        alert('Invalid email or password. Please try again.');
+        setEmail('');
+        setPassword('');
+    };
+    console.log(email, "qwertyui")
     const handleForgotPassword = () => {
         router.push('/forgot-password'); // Navigate to forgot password page
-      };
+    };
     const handleSignup = () => {
         router.push('/signup'); // Navigate to forgot password page
-      };
+    };
     return (
         <div className="container" style={{ padding: 200 }}>
             <div className='algin-center'>
