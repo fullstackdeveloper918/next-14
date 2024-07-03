@@ -44,10 +44,14 @@ export default function Signin() {
 
     const handleSignin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        let abc=localStorage.setItem('user1', JSON.stringify({ email, password }));
         localStorage.setItem('user1', JSON.stringify({ email, password }));
-        if ((email === 'abhay@gmail.com' || email === 'abhay1@gmail.com' || email === 'abhay2@gmail.com' || email === 'admin@gmail.com') && password === 'Abhay@1') {
-            alert('Signin successful! Redirecting to dashboard.');
+        console.log(email,"sasda");
+        
+        if ((email == 'abhay@gmail.com'&& password == 'Abhay@1')||(email == 'abhay1@gmail.com'&& password == 'Abhay@1')||(email == 'abhay2@gmail.com'&& password == 'Abhay@1') ) {
             router.push('/dashboard');
+            alert('Signin successful! Redirecting to dashboard.');
             // Set cookies if remember me is checked
             if (rememberMe) {
                 setCookie(null, 'COOKIES_USER_ACCESS_TOKEN', email, {
@@ -60,8 +64,8 @@ export default function Signin() {
                 });
             }
             // Clear form fields
-            setEmail('');
-            setPassword('');
+            // setEmail('');
+            // setPassword('');
             return;
         }
 
@@ -83,8 +87,8 @@ export default function Signin() {
                 });
             }
             if ((email === userData.email || email === "website@gmail.com") && (password === userData.password || password === 'Abhay@123')) {
-                alert('Signin successful! Redirecting to home page.');
                 router.push('/home')
+                alert('Signin successful! Redirecting to home page.');
             } else {
                 alert('Invalid email or password. Please try again.');
             }

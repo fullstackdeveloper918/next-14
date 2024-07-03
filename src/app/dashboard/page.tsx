@@ -16,6 +16,9 @@ const router=useRouter()
     const handlePush1=()=>{
       router.push('/imagereduce')
     }
+    const handlePush2=()=>{
+      router.push('/videoreduce')
+    }
   return (
     <div className='container'>
       <div className="row gap-2">
@@ -27,8 +30,14 @@ const router=useRouter()
         <div className="text-center">
           <button className="" onClick={handlePush}> Go to form</button>
         </div>
+        <div className="d-flex gap-3">
+
         <div className="text-center">
           <button className="" onClick={handlePush1}>Image Reducer</button>
+        </div>
+        <div className="text-center">
+          <button className="" onClick={handlePush2}>Video Reducer</button>
+        </div>
         </div>
         </div>
         {/* {userInfo?.roles?.includes() || userInfo?.super_admin ?:""} */}
